@@ -84,7 +84,7 @@ def deep_learning(train_X, test_X, train_Y):
     plot_history(history)
     y_pred = model.predict(test_X).flatten()
 
-    return y_pred
+    return y_pred,model
 
 
 if __name__ == '__main__':

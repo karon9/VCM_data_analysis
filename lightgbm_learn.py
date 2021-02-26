@@ -61,7 +61,7 @@ def lightgbm(train_X, test_X, train_Y,args):
     # 重要なカラムの出力
     visualize_importance(model, train_X)
 
-    return y_pred
+    return y_pred,model
 
 
 if __name__ == '__main__':
