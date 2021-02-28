@@ -1,0 +1,7 @@
+.gitignore
+.git/
+*.csv
+.idea/
+__pycache__/
+*.txt
+*.html

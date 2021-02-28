@@ -6,6 +6,7 @@ from lightgbm_learn import lightgbm
 from SVR_learn import SVR
 from deeplearning import deep_learning
 from create_dataset import modify_dataset_AUC
+from linearregression import Linear_Regression
 
 
 def main():
@@ -21,6 +22,8 @@ def main():
         y_pred, model = SVR(train_X, test_X, train_Y)
     elif args.method == 'deep':
         y_pred, model = deep_learning(train_X, test_X, train_Y)
+    elif args.method == 'linear':
+        y_pred, model = Linear_Regression(train_X, test_X, train_Y)
 
     # 結果の出力
     df_test = pd.DataFrame([test_Y.values, y_pred, abs(test_Y.values - y_pred)], index=['実験値', '予想値', '実験値と予想値の差'])
@@ -36,7 +39,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-o", "--optuna", help="Using optuna", action="store_true")
-    parser.add_argument("-m", '--method', help="Using what of method", choices=['lightgbm', 'svr', 'deep'],
+    parser.add_argument("-m", '--method', help="Using what of method", choices=['lightgbm', 'svr', 'deep', 'linear'],
                         required=True)
     args = parser.parse_args()
     main()

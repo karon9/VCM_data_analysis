@@ -15,7 +15,7 @@ def sum_D1_Dss(df):
     return df
 
 
-def create_dataset() -> pd.DataFrame:
+def create_dataset():
     df = pd.read_csv('data(bind_9000).csv')
 
     # 外れ値を削除

@@ -4,7 +4,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
 
-
 def SVR(train_X, test_X, train_Y):
     sc = preprocessing.StandardScaler()
     sc.fit(train_X)
@@ -15,7 +14,7 @@ def SVR(train_X, test_X, train_Y):
     clf_svr.fit(train_X, train_Y)
 
     y_pred = clf_svr.predict(test_X)
-    return y_pred
+    return y_pred, clf_svr
 
 
 if __name__ == '__main__':
