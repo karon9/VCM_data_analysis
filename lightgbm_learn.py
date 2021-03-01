@@ -1,13 +1,10 @@
 import lightgbm as lgb
 from sklearn.model_selection import train_test_split
-from dataset_profille import visualize_importance
+import shap
+import matplotlib.pyplot as plt
 
 
-
-
-
-
-def lightgbm(train_X, test_X, train_Y,args):
+def lightgbm(train_X, test_X, train_Y, args):
     train_X, valid_X, train_Y, valid_Y = train_test_split(train_X, train_Y, test_size=0.1, random_state=4)
 
     # データセットを生成する
@@ -59,9 +56,15 @@ def lightgbm(train_X, test_X, train_Y,args):
     y_pred = model.predict(test_X, num_iteration=model.best_iteration)
 
     # 重要なカラムの出力
-    visualize_importance(model, train_X)
+    lgb.plot_importance(model, importance_type="gain")
+    plt.show()
 
-    return y_pred,model
+    shap.initjs()
+    explainer = shap.TreeExplainer(model)
+    shap_values = explainer.shap_values(train_X)
+    shap.summary_plot(shap_values, train_X)
+
+    return y_pred, model
 
 
 if __name__ == '__main__':
