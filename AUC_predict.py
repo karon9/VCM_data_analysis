@@ -30,7 +30,8 @@ def main():
 
     # 結果の出力
     df_test = pd.DataFrame([test_Y.values, y_pred, abs(test_Y.values - y_pred)], index=['実験値', '予想値', '実験値と予想値の差'])
-    df_test.to_csv('result.csv', encoding='utf-8')
+    df_test.to_csv('result_AUC.csv', encoding='utf-8_sig')
+    print('Output csv file')
 
     r2 = r2_score(test_Y.values, y_pred)
 

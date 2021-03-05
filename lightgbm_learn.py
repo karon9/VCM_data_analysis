@@ -55,10 +55,6 @@ def lightgbm(train_X, test_X, train_Y, args):
     # テストデータを予測する
     y_pred = model.predict(test_X, num_iteration=model.best_iteration)
 
-    # 重要なカラムの出力
-    lgb.plot_importance(model, importance_type="gain")
-    plt.show()
-
     shap.initjs()
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(train_X)

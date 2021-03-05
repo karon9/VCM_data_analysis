@@ -1,6 +1,5 @@
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
-from dataset_profille import visualize_importance
 from sklearn import model_selection
 import matplotlib.pyplot as plt
 import shap
@@ -18,8 +17,6 @@ def xgboost(train_X, test_X, train_Y):
 
     clf = xgb.XGBRegressor(**clf_cv.best_params_)
     clf.fit(train_X, train_Y)
-    xgb.plot_importance(clf, importance_type="gain")
-    plt.show()
 
     shap.initjs()
     explainer = shap.TreeExplainer(clf)
